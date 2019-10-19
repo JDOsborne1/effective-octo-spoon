@@ -5,6 +5,8 @@
 
 library(drake)
 library(dplyr)
+library(tibble)
+library(purrr)
 
 source(here::here("R/data_load.R"))
 source(here::here("R/summary_functions.R"))
@@ -19,13 +21,15 @@ plan <- drake_plan(
         # Making some basic Summaries for use in the readme
         , entity_summary = summariseEntities(origin)
         , volume_of_donations = sum(entity_summary$n)
+        
+        , category_summary = summariseCategoricals(origin)
 )
 
 
 # Looking at configuration ------------------------------------------------
 
 plan_config <- drake_config(plan)
-# vis_drake_graph(plan_config)
+ vis_drake_graph(plan_config)
 
 # Plan Execution ----------------------------------------------------------
 
