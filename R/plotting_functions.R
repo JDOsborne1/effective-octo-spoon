@@ -10,5 +10,6 @@ makeFreqGraph <- function(a_counts_tibble, count_name){
                 geom_col() +
                 labs(
                         title = count_name
-                )
+                ) +
+                coord_flip()
 }
