@@ -12,14 +12,20 @@ source(here::here("R/summary_functions.R"))
 # Plan Definition ---------------------------------------------------------
 
 plan <- drake_plan(
-        origin = donationDataLoad()
+        
+        # loading the origin data
+        origin = donationDataLoad("https://query.data.world/s/ulqkkguwliwj4eqr4qfqyklzsxjnqr")
+        
+        # Making some basic Summaries for use in the readme
         , entity_summary = summariseEntities(origin)
         , volume_of_donations = sum(entity_summary$n)
 )
 
 
+# Looking at configuration ------------------------------------------------
 
-
+plan_config <- drake_config(plan)
+# vis_drake_graph(plan_config)
 
 # Plan Execution ----------------------------------------------------------
 
