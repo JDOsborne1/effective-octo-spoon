@@ -5,7 +5,7 @@
 
 summariseEntities <- function(a_tibble){
         a_tibble %>% 
-                count(RegulatedEntityName) %>% 
+                count(ReducedRegulatedEntityName) %>% 
                 arrange(desc(n))
 }
 
