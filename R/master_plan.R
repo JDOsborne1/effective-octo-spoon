@@ -50,7 +50,7 @@ plan <- drake_plan(
         , ranger_pred = predict(ranger_fit, test_data)
         , ranger_pred_test = cbind(test_data, ranger_pred)
         , accuracy_score = procVerify(ranger_pred_test)
-        
+        , confusion_counts = funConfusion(ranger_pred_test)
         
         
         # Report statistics
