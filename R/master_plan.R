@@ -6,7 +6,7 @@
 
 source(here::here("R/import.R"))
 source(here::here("R/data_load.R"))
-source(here::here("R/data_cleaning_functions.R"))
+source(here::here("R/data_cleaning_functions.R"), encoding = "UTF-8")
 source(here::here("R/summary_functions.R"))
 
 
