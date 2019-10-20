@@ -25,9 +25,17 @@ plan <- drake_plan(
         # Making some basic Summaries for use in the readme
         , entity_summary = summariseEntities(origin_clean)
         , volume_of_donations = sum(entity_summary$n)
-        
         , category_summary = summariseCategoricals(origin_clean)
-)
+        
+        
+        # Putting in some inspection plots from inspectdf
+        , type_inspection_plot = inspect_types(origin_clean) %>% show_plot()
+        
+        # Splitting the data for modelling purposes
+        , split_data = initial_split(origin_clean, strata = ReducedRegulatedEntityName)
+        , test_data = testing(split_data)
+        , training_data = training(split_data)
+        )
 
 
 # Looking at configuration ------------------------------------------------
