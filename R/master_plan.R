@@ -30,6 +30,7 @@ plan <- drake_plan(
         
         # Putting in some inspection plots from inspectdf
         , type_inspection_plot = inspect_types(origin_clean) %>% show_plot()
+        , missing_inspection_plot = inspect_na(origin_clean) %>% show_plot()
         
         # Splitting the data for modelling purposes
         , split_data = initial_split(origin_clean, strata = ReducedRegulatedEntityName)
