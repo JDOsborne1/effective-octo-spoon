@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 The goal of effective-octo-spoon is to Analyse the publicly available data on political donations to detect pattens in polical financing. 
 
-Additionnaly it will use the drake package to generate a reproducible workflow for the project 
+Additionally it will use the drake package to generate a reproducible workflow for the project 
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
