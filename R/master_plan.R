@@ -8,6 +8,7 @@ source(here::here("R/import.R"))
 source(here::here("R/data_load.R"))
 source(here::here("R/data_cleaning_functions.R"), encoding = "UTF-8")
 source(here::here("R/summary_functions.R"))
+source(here::here("R/ml_functions.R"))
 
 
 # Plan Definition ---------------------------------------------------------
@@ -48,7 +49,12 @@ plan <- drake_plan(
         # Testing data
         , ranger_pred = predict(ranger_fit, test_data)
         , ranger_pred_test = cbind(test_data, ranger_pred)
+        , accuracy_score = procVerify(ranger_pred_test)
         
+        
+        
+        # Report statistics
+        , num_unique_donees = origin %>% pull(RegulatedEntityName) %>% unique() %>% length()
         )
 
 

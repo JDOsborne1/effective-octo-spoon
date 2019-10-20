@@ -25,4 +25,7 @@ source(here::here("R/master_plan.R"))
 ```
 
 There were `r readd(volume_of_donations)` donations total in the dataset
- 
+
+Those donations went to a huge variety of people. (`r readd(num_unique_donees)` in total)
+
+For this analysis we will aggregate those unique recipients into all those with more than 140 donations and the remainder. This leaves us with `r nrow(readd(entity_summary))` recipients, including 'other' 
