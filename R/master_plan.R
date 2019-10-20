@@ -36,6 +36,19 @@ plan <- drake_plan(
         , split_data = initial_split(origin_clean, strata = ReducedRegulatedEntityName)
         , test_data = testing(split_data)
         , training_data = training(split_data)
+        
+        # Making ML object
+        , forest_classifier = rand_forest(mode ="classification", trees = 2000) 
+        # Specifying the learner
+        , ranger_classifier = set_engine(forest_classifier, "ranger")
+        
+        # Fitting the data
+        , ranger_fit = fit(ranger_classifier, ReducedRegulatedEntityName ~ ., data = training_data)
+        
+        # Testing data
+        , ranger_pred = predict(ranger_fit, test_data)
+        , ranger_pred_test = cbind(test_data, ranger_pred)
+        
         )
 
 
