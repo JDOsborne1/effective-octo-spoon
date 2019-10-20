@@ -4,23 +4,29 @@
 # Imports -----------------------------------------------------------------
 
 
-
 source(here::here("R/import.R"))
 source(here::here("R/data_load.R"))
+source(here::here("R/data_cleaning_functions.R"))
 source(here::here("R/summary_functions.R"))
+
 
 # Plan Definition ---------------------------------------------------------
 
 plan <- drake_plan(
         
         # loading the origin data
-        origin = donationDataLoad("https://query.data.world/s/ulqkkguwliwj4eqr4qfqyklzsxjnqr")
+        origin = donationDataLoad(
+                "https://query.data.world/s/ulqkkguwliwj4eqr4qfqyklzsxjnqr"
+                )
+        
+        # Cleaning the origin data
+        , origin_clean = scrub(origin)
         
         # Making some basic Summaries for use in the readme
-        , entity_summary = summariseEntities(origin)
+        , entity_summary = summariseEntities(origin_clean)
         , volume_of_donations = sum(entity_summary$n)
         
-        , category_summary = summariseCategoricals(origin)
+        , category_summary = summariseCategoricals(origin_clean)
 )
 
 
