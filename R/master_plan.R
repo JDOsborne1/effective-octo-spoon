@@ -13,7 +13,9 @@ source(here::here("R/ml_functions.R"))
 
 # Plan Definition ---------------------------------------------------------
 
-plan <- drake_plan(
+plan(multiprocess)
+
+task_plan <- drake_plan(
         
         # loading the origin data
         origin = donationDataLoad(
@@ -60,12 +62,12 @@ plan <- drake_plan(
 
 # Looking at configuration ------------------------------------------------
 
-plan_config <- drake_config(plan)
+plan_config <- drake_config(task_plan)
  vis_drake_graph(plan_config)
 
 # Plan Execution ----------------------------------------------------------
 
-make(plan)
+make(task_plan, parallelism = "future", jobs = 4)
 
 
 # Output Saving -----------------------------------------------------------
