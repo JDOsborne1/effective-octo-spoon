@@ -14,11 +14,16 @@ source(here::here("R/ml_functions.R"))
 # Plan Definition ---------------------------------------------------------
 
 source(here::here("R/plan.R"))
+source(here::here("R/split_comparison.R"))
 
-
+full_plan <- drake::bind_plans(
+        task_plan
+        #, split_comparison_plan
+        #, clustering_plan
+        )
 # Looking at configuration ------------------------------------------------
 
-plan_config <- drake_config(task_plan)
+plan_config <- drake_config(full_plan)
  vis_drake_graph(plan_config)
 
 # Plan Execution ----------------------------------------------------------
